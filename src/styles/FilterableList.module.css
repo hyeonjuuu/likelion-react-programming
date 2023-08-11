@@ -1,0 +1,12 @@
+.primary {
+  color: #be3434;
+  &::placeholder {
+    color: inherit;
+  }
+}
+.secondary {
+  color: #34b2be;
+}
+.accent {
+  color: #8034be;
+}
