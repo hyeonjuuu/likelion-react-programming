@@ -1,20 +1,37 @@
-// props ? { direction, label }
-function GoToButton({ direction, label }) {
+function GoToButton({
+  direction /* 'down' | 'up' */,
+  label /* string */,
+  // props로 받는다.
+  onPointerEnter,
+  onClick /* function */,
+  onMouseEnter,
+  onMouseLeave,
+  onKeyDown,
+  onKeyUp,
+}) {
   // 문 또는 식
-  let className = '';
-  // 문
+  // let className = '';
+  /*   // 문
   if (direction === 'down') {
     className = 'scrollDown';
   } else {
     className = 'scrollUp';
-  }
+  } */
   return (
     <button
       type="button"
-      // 식만 사용 가능
-      className={className}
+      // className={className}
+      /* 식만 사용 가능 */
+      className={direction === 'down' ? 'scrollDown' : 'scrollUp'}
       aria-label={label}
       title={label}
+      onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onKeyDown={onKeyDown}
+      onKeyUp={onKeyUp}
+      // button요소에 연결한다.
+      onPointerEnter={onPointerEnter}
     >
       <svg
         fill="currentColor"
