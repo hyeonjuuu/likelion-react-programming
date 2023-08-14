@@ -34,6 +34,8 @@ function RenderingLists({ statusMessage, renderList }) {
           {/* reactLibrary 객체를 순환해서 리스트 렌더링 */}
           {/* <pre>{JSON.stringify(reactLibrary, null, 2)}</pre> */}
           {/* <pre>{JSON.stringify(Object.entries(reactLibrary), null, 2)}</pre> */}
+
+          {/* object.entries를 쓴 이유 : 객체의 키와 값을 배열로 받기 위해서 */}
           {Object.entries(reactLibrary).map(([key, value]) => {
             return (
               <div key={key}>
