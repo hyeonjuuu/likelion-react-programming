@@ -21,49 +21,12 @@ function SideEffect() {
     effectElement?.setAttribute('lang', 'en');
   });
 
-  /* 
-    // Virtual DOM => Virtual Element Tree (React Element Tree)
-    {
-      @@typeof: Symbol('react-element'),
-      key: null,
-      type: 'div',
-      props: {
-        className: 'SideEffect',
-        children: [
-          {
-            @@typeof: Symbol('react-element'),
-            key: null,
-            type: 'h2',
-            props: {
-              children: 'Side Effect'
-            }
-          },
-          {
-            @@typeof: Symbol('react-element'),
-            key: null,
-            type: 'p',
-            props: {
-              children: 'impure action'
-            }
-          }
-        ]
-      }
-    }
-  */
-
-  return React.createElement(
-    'div',
-    { className: 'SideEffect' },
-    React.createElement('h2', null, 'Side Effect'),
-    React.createElement('p', null, 'impure action')
+  return (
+    <div className="SideEffect">
+      <h2>Side Effect</h2>
+      <p>impure action</p>
+    </div>
   );
-
-  // return (
-  //   <div className="SideEffect">
-  //     <h2>Side Effect</h2>
-  //     <p>impure action</p>
-  //   </div>
-  // )
 }
 
 export default SideEffect;
