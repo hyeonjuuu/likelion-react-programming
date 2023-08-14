@@ -12,14 +12,16 @@ function SideEffect() {
   // pure
   console.log(document.querySelector('.SideEffect'));
 
-  React.useEffect(() => {
-    // * impure 이 안에선 불순해도 된다!
-    // 이펙트 콜백 함수
-    // DOM 커밋 이후에 실행
-    console.log('effect callback');
-    const effectElement = document.querySelector('.SideEffect');
-    effectElement?.setAttribute('lang', 'en');
-  });
+  React.useEffect(
+    /* setup */
+    () => {
+      // impure
+      console.log('effect callback');
+      const effectElement = document.querySelector('.SideEffect');
+      effectElement?.setAttribute('lang', 'en');
+    }
+    /* dependencies? */
+  );
 
   return (
     <div className="SideEffect">
