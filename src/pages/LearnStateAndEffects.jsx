@@ -11,23 +11,24 @@ function LearnStateAndEffects() {
   // 개별 상태 관리 → 그룹(묶음) 상태 관리
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  const handlePrintMousePosition = ({ clientX: x, clientY: y }) => {
+  const handlePrintMousePosition = ({ pageX: x, pageY: y }) => {
     // setMouseX(e.clientX);
     // setMouseY(e.clientY);
     setMousePosition({ x, y });
   };
 
   // 객체 상태 관리
-  // { x:10, y:96 }
+  // { x: 10, y: 96 }
   // 배열 상태 관리
-  // [ 10, 96 ] //x,y 순서대로
+  // [10, 96]
 
   const [repository, setRepository] = useState({
     id: 'repo-101',
-    title: 'https://github.com/hyeonjuuu',
+    title: 'yamoo9/likelion-FEQA',
+    link: 'https://github.com/yamoo9/likelion-FEQA',
     profile: {
-      link: 'https://github.com/hyeonjuuu?tab=repositories',
-      label: 'hyeonjuuu',
+      url: 'https://avatars.githubusercontent.com/u/1850554?s=16&v=4',
+      label: 'yamoo9',
     },
   });
 
@@ -48,7 +49,7 @@ function LearnStateAndEffects() {
       <form className="w-1/2">
         <div className="flex items-center gap-2 w-full">
           <label htmlFor="repoTitle" className="font-medium">
-            타이틀(title)
+            타이틀 (title)
           </label>
           <input
             type="text"
@@ -57,6 +58,7 @@ function LearnStateAndEffects() {
             value={repository.title}
             onChange={(e) => {
               setRepository({
+                ...repository,
                 title: e.target.value,
               });
             }}
@@ -66,7 +68,7 @@ function LearnStateAndEffects() {
         </div>
         <div className="flex items-center gap-2 w-full">
           <label htmlFor="repoLink" className="font-medium">
-            링크(href)
+            링크 (href)
           </label>
           <input
             type="text"
@@ -75,6 +77,7 @@ function LearnStateAndEffects() {
             value={repository.link}
             onChange={(e) => {
               setRepository({
+                ...repository,
                 link: e.target.value,
               });
             }}
@@ -84,16 +87,20 @@ function LearnStateAndEffects() {
         </div>
         <div className="flex items-center gap-2 w-full">
           <label htmlFor="repoProfileLabel" className="font-medium">
-            프로필 레이블(profile.label)
+            프로필 레이블 (profile.label)
           </label>
           <input
             type="text"
             name="repoProfileLabel"
             id="repoProfileLabel"
-            value={repository.profile}
+            value={repository.profile.label}
             onChange={(e) => {
               setRepository({
-                link: e.target.value,
+                ...repository,
+                profile: {
+                  ...repository.profile,
+                  label: e.target.value,
+                },
               });
             }}
             className="flex-1 p-1 border-b-2 border-slate-400 bg-transparent placeholder:text-slate-400"
