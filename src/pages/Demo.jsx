@@ -1,6 +1,6 @@
 /* eslint-disable no-inner-declarations */
 import Switcher from '@/components/Switcher/Switcher';
-import React from 'react';
+import { useState } from 'react';
 
 {
   // 로컬 변수
@@ -27,34 +27,36 @@ import React from 'react';
 
   // console.log(isReady);
   // console.log(setIsReady);
+
+  {
+    /* <p>{myName}</p> */
+  }
+  {
+    /* <button type='button' onClick={handleUpdateMyName}>나의 이름을 바꿔줘</button> */
+  }
+  {
+    /* Atomic Component → Stateless or Presentational */
+  }
 }
 
-function Demo() {
-  // *다크 모드 상태 관리
-  const [isDarkMode, setIsDarkMode] = React.useState(true);
+function DemoPage() {
+  // 다크 모드 상태 관리
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const handleToggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
   };
 
-  // *리듀스 모션 상태관리
-  const [isReducedMotion, setIsReducedMotion] = React.useState(true);
+  // 리듀스 모션 상태 관리
+  const [isReducedMotion, setIsReducedMotion] = useState(false);
   const handleToggleReducedMotion = () => {
-    // 설정함수를 넣어줄 수 있다.
-    setIsReducedMotion;
+    setIsReducedMotion(!isReducedMotion);
   };
 
-  // *아유 레디 상태 관리
-  // ^상태
-  const [isReady, setIsReady] = React.useState(false);
-  // ^핸들러
+  // 아 유 레디 상태 관리
+  const [isReady, setIsReady] = useState(true);
   const handleToggleReady = () => {
     setIsReady(!isReady);
   };
-
-  //   const [isToggle, setToggle] = React.useState(true);
-  // const handleToggleButton = () => {
-  //   setToggle(!isToggle);
-  // };
 
   return (
     <div
@@ -67,9 +69,6 @@ function Demo() {
         gap: 8,
       }}
     >
-      {/* <p>{myName}</p> */}
-      {/* <button type='button' onClick={handleUpdateMyName}>나의 이름을 바꿔줘</button> */}
-      {/* Atomic Component → Stateless or Presentational */}
       <Switcher
         on={isDarkMode}
         label="다크 모드"
@@ -87,4 +86,4 @@ function Demo() {
   );
 }
 
-export default Demo;
+export default DemoPage;
