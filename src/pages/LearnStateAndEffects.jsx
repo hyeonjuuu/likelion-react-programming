@@ -1,121 +1,31 @@
-import { useState } from 'react';
+// 상태는 스냅샷 같이 작동한다.
+// 상태란? 시간의 흐름에 따라 변하는 데이터를 말한다.
+// 스냅샷은 흐르는 상태의 특정 시점에서의 데이터 조각을 말한다.
+// 스냅샷은 현재 실행된 함수 몸체 안에서 변경이 불가능하다.
+// 렌더 트리거(요청)를 수행하는 상태 업데이트 함수에 전달한 nextState는 다음 렌더링 시점에 반영된다.
+// 그렇다면? 현재 시점에서 변경될 상태에 접근할 수는 없는가?
+// 아니다. 사이드 이펙트로 처리가 가능하다.
+// 1. 이벤트 핸들러
+// 2. useEffect 훅
+
+import { useState } from "react";
 
 function LearnStateAndEffects() {
-  // 숫자 값 상태 관리
 
-  // 마우스의 x 좌표
-  // const [mouseX, setMouseX] = useState(0);
-  // 마우스의 y 좌표
-  // const [mouseY, setMouseY] = useState(0);
+  const [count, setCount] = useState(0);
 
-  // 개별 상태 관리 → 그룹(묶음) 상태 관리
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  const handlePrintMousePosition = ({ pageX: x, pageY: y }) => {
-    // setMouseX(e.clientX);
-    // setMouseY(e.clientY);
-    setMousePosition({ x, y });
-  };
-
-  // 객체 상태 관리
-  // { x: 10, y: 96 }
-  // 배열 상태 관리
-  // [10, 96]
-
-  const [repository, setRepository] = useState({
-    id: 'repo-101',
-    title: 'yamoo9/likelion-FEQA',
-    link: 'https://github.com/yamoo9/likelion-FEQA',
-    profile: {
-      url: 'https://avatars.githubusercontent.com/u/1850554?s=16&v=4',
-      label: 'yamoo9',
-    },
-  });
-
+  const handleClick = () => {
+    setCount(count + 10); // count (snapshot) = 0
+    console.log('count 값은? ', count); // 10
+  }
+  
+  
   return (
-    <div
-      className="m-10 flex flex-col gap-2 items-start"
-      onMouseMove={handlePrintMousePosition}
-    >
-      <h2 className="text-indigo-600 text-2xl uppercase">
-        상태 및 이펙트 학습하기
+    <div className="m-10 flex flex-col gap-2 items-start">
+      <h2 className={`text-indigo-600 font-suit text-2xl`}>
+        상태 및 이펙트 학습하기 ({count})
       </h2>
-
-      <output>
-        마우스 X 좌표 : {mousePosition.x} / 마우스 Y 좌표 : {mousePosition.y}
-      </output>
-
-      <h2 className="text-2xl mt-10 font-semibold">저장소 정보 수정</h2>
-      <form className="w-1/2">
-        <div className="flex items-center gap-2 w-full">
-          <label htmlFor="repoTitle" className="font-medium">
-            타이틀 (title)
-          </label>
-          <input
-            type="text"
-            name="repoTitle"
-            id="repoTitle"
-            value={repository.title}
-            onChange={(e) => {
-              setRepository({
-                ...repository,
-                title: e.target.value,
-              });
-            }}
-            className="flex-1 p-1 border-b-2 border-slate-400 bg-transparent placeholder:text-slate-400"
-            placeholder="yamoo9/repository"
-          />
-        </div>
-        <div className="flex items-center gap-2 w-full">
-          <label htmlFor="repoLink" className="font-medium">
-            링크 (href)
-          </label>
-          <input
-            type="text"
-            name="repoLink"
-            id="repoLink"
-            value={repository.link}
-            onChange={(e) => {
-              setRepository({
-                ...repository,
-                link: e.target.value,
-              });
-            }}
-            className="flex-1 p-1 border-b-2 border-slate-400 bg-transparent placeholder:text-slate-400"
-            placeholder="https://my-web-service.dev"
-          />
-        </div>
-        <div className="flex items-center gap-2 w-full">
-          <label htmlFor="repoProfileLabel" className="font-medium">
-            프로필 레이블 (profile.label)
-          </label>
-          <input
-            type="text"
-            name="repoProfileLabel"
-            id="repoProfileLabel"
-            value={repository.profile.label}
-            onChange={(e) => {
-              setRepository({
-                ...repository,
-                profile: {
-                  ...repository.profile,
-                  label: e.target.value,
-                },
-              });
-            }}
-            className="flex-1 p-1 border-b-2 border-slate-400 bg-transparent placeholder:text-slate-400"
-            placeholder="yamoo9"
-          />
-        </div>
-        <div role="group" className="flex gap-1 mt-5">
-          <button type="submit" className="py-1.5 px-2.5 bg-sky-500 text-white">
-            저장
-          </button>
-          <button type="reset" className="py-1.5 px-2.5 bg-rose-500 text-white">
-            취소
-          </button>
-        </div>
-      </form>
+      <button type="button" onClick={handleClick}>+10</button>
     </div>
   );
 }
