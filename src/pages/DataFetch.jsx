@@ -22,6 +22,7 @@ function LearnStateAndEffects() {
   // side effect
   // server request (endpoint)
   useEffect(() => {
+    
     // 상태 변경
     // 대기 → 로딩 중...
     setStatus('loading'); // 상태 업데이트 일괄(batch) 처리
@@ -31,12 +32,14 @@ function LearnStateAndEffects() {
       // 성공
       .then((response) => response.json())
       .then((responseData) => {
+        // 상태 업데이트 일괄(batch) 처리
         setData(responseData);
         setStatus('success');
       })
       // 실패
       .catch((error) => {
-        // setStatus('error');
+        // 상태 업데이트 일괄(batch) 처리
+        setStatus('error');
         setError(error);
       });
   }, []);
@@ -44,9 +47,13 @@ function LearnStateAndEffects() {
   // 데이터 가져오는 중(로딩)일 때 표시할 화면
   if (status === 'loading') {
     return (
-      <div role="alert">
+      <div
+        role="alert"
+        className="flex h-[calc(100vh_-_70px)] w-auto justify-center items-center"
+      >
         <img
           src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXM1MHd1cmZid2plZmF4OW9xbGxyZm5tdXZ2Y2E1czRwZGZ6dDIwaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3oEjI6SIIHBdRxXI40/200.gif"
+          className='h-20'
           alt="데이터 가져오는 중입니다."
         />
       </div>
@@ -55,7 +62,15 @@ function LearnStateAndEffects() {
 
   // 데이터 가져오기 실패한 경우 표시할 화면
   if (status === 'error') {
-    <div role="alert">{error.toString()}</div>;
+    return (
+      <div
+        role="alert"
+        className="flex flex-col text-red-100 bg-red-900 h-[calc(100vh_-_70px)] w-auto justify-center items-center"
+      >
+        <p>{error.toString()}</p>
+        <p className='text-xs'>알 수 없는 오류가 발생했습니다.</p>
+      </div>
+    );
   }
 
   // 데이터 가져오기 성공했을 때 표시할 화면
