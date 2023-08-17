@@ -1,31 +1,30 @@
-// # 아래 일들은 리액트 렌더링과 상관 없이 외적으로 처리가 요구되는 일 (=side effect)
+// 리액트 렌더링과 상관 없이 외적으로 처리가 요구되는 일 (side effect)
 // 서버에 데이터 가져오기 요청
-// 대기 시간 ... (사용자에 어떤 정보를 제공할 것인가?)
-// 서버에서 응답 (성공 또는 실패)
-// 성공한 경우  : 배열(객체) 리스트 렌더링 -> 화면에 표시
-// 실패한 경우 : 오류 메시지를 화면에 출력
+// 대기 시간.... (사용자가 어떤 정보를 제공할 것인가?)
+// 서버에서 응답(성공 또는 실패)
+// 성공한 경우: 배열(객체) 리스트 렌더링 -> 화면에 표시
+// 실패한 경우: 오류 메시지를 화면에 출력
 
-import { useState, useEffect } from 'react';
+// 컴포넌트 상태 (최소한의 갯수로 관리가 요구)
+// 1. data : 데이터 가져오기
+// 2-1. isLoading : 대기 시간 상태
+// 2-2. isSuccess : 데이터 가져오기 성공한 상태
+// 2-3. isError : 데이터 가져오기 실패한 상태
+// 2. status : 진행 상황 'pending' | 'loading' | 'success' | 'error'
+
+import { useEffect, useState } from 'react';
 
 function LearnStateAndEffects() {
-  // #컴포넌트 상태 (최소한의 갯수로 관리가 요구)
-  // 1. data : 데이터 가져오기
-  // 2. status : 진행 상황 'pending' | 'loading' | 'success' | 'error'
-  // 2-1. isLoading : 대기 시간 상태
-  // 2-2. isSuccess : 데이터 가져오기 성공한 상태
-  // 2-3. isError : 데이터 가져오기 실패한 상태
-
   const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
   const [status, setStatus] = useState('pending');
 
-  console.log({ status });
-
-  // server request (endpoint:)
-  // side effect 코드 -> useEffect로 감싼다
+  // side effect
+  // server request (endpoint)
   useEffect(() => {
-    // ^상태 변경
-    // 대기 -> 로딩 중
-    setStatus('loading');
+    // 상태 변경
+    // 대기 → 로딩 중...
+    setStatus('loading'); // 상태 업데이트 일괄(batch) 처리
 
     // Promise API
     fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
@@ -37,11 +36,29 @@ function LearnStateAndEffects() {
       })
       // 실패
       .catch((error) => {
-        console.error(error);
-        setStatus('error');
+        // setStatus('error');
+        setError(error);
       });
   }, []);
 
+  // 데이터 가져오는 중(로딩)일 때 표시할 화면
+  if (status === 'loading') {
+    return (
+      <div role="alert">
+        <img
+          src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXM1MHd1cmZid2plZmF4OW9xbGxyZm5tdXZ2Y2E1czRwZGZ6dDIwaCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3oEjI6SIIHBdRxXI40/200.gif"
+          alt="데이터 가져오는 중입니다."
+        />
+      </div>
+    );
+  }
+
+  // 데이터 가져오기 실패한 경우 표시할 화면
+  if (status === 'error') {
+    <div role="alert">{error.toString()}</div>;
+  }
+
+  // 데이터 가져오기 성공했을 때 표시할 화면
   return (
     <div className="m-10 flex flex-col gap-2 items-start">
       <h2 className={`text-indigo-600 font-suit text-2xl`}>
