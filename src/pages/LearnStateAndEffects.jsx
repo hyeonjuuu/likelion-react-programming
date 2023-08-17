@@ -28,7 +28,8 @@ function LearnStateAndEffects() {
 
       const data = await response.json();
 
-      console.log(data);
+      setData(data);
+      setIsLoading(false);
     }
 
     fetchTodos();
@@ -38,7 +39,7 @@ function LearnStateAndEffects() {
     return (
       <Spinner
         size={120}
-        className="absoulte z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        className="absolute z-[10000] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
       />
     );
   }
@@ -48,6 +49,12 @@ function LearnStateAndEffects() {
       <h2 className="text-indigo-600 font-suit text-2xl">
         상태 및 이펙트 학습하기
       </h2>
+      {data &&
+        data.items?.map((item) => (
+          <div key={item.id} className="todo">
+            <strong>{item.doit}</strong>
+          </div>
+        ))}
     </div>
   );
 }
