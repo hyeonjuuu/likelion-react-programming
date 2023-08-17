@@ -60,7 +60,7 @@ function LearnStateAndEffects() {
   const handleChangeMessage = () => {
     // 상태 업데이트 함수 ( 실행되면 렌더 트리거)
     // 리액트!!! 화면에 메세지가 바뀌길 윈해 바꿔줘!(이벤트 핸들러에 요청-trigger)
-    setStudyMessage('화이팅!');
+    setStudyMessage('화이팅! :)');
   };
 
   // 컴포넌트 렌더링 ( 함수 컴포넌트 다시 실행)
