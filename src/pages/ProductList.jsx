@@ -13,6 +13,7 @@ function ProductList() {
   useEffect(() => {
     // 중단(abort) 컨트롤러(controller) 생성
     const controller = new AbortController();
+    console.log(controller);
 
     setIsLoading(true);
 
