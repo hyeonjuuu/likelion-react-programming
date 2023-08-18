@@ -18,15 +18,12 @@ function LearnStateAndEffects() {
   // 이펙트가 필요해!!!
   // React 외적인 일을 처리
   useEffect(() => {
-    // const controller = new AbortController();
-    // const { signal } = controller;
+    const controller = new AbortController();
+    const { signal } = controller;
 
     setStatus('loading');
 
-    fetch(
-      'http://127.0.0.1:8090/api/collections/todos/records'
-      //  { signal }
-    )
+    fetch('http://127.0.0.1:8090/api/collections/todos/records', { signal })
       .then((response) => response.json())
       .then((responseData) => {
         setStatus('success');
