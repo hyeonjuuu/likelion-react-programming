@@ -3,6 +3,7 @@ import { useState } from 'react';
 function SignUp() {
   const [formState, setFormState] = useState({
     name: '',
+    username: '',
     email: '',
     password: '',
     passwordConfirm: '',
@@ -10,6 +11,7 @@ function SignUp() {
 
   const handleRegister = (e) => {
     e.preventDefault();
+    console.log();
     // PocketBase SDK 인증 요청
     console.log('가입');
   };
@@ -18,7 +20,7 @@ function SignUp() {
     const { name, value } = e.target;
     setFormState({
       ...formState,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -26,16 +28,19 @@ function SignUp() {
     <div>
       <h2>회원가입</h2>
 
-      <form onSubmit={handleRegister} className='flex flex-col gap-2 mt-2 justify-start items-start'>
+      <form
+        onSubmit={handleRegister}
+        className="flex flex-col gap-2 mt-2 justify-start items-start"
+      >
         <div>
-          <label htmlFor="name">이름</label>
+          <label htmlFor="username">계정 이름</label>
           <input
             type="text"
             name="name"
             id="name"
-            value={formState.name}
+            value={formState.username}
             onChange={handleInput}
-            className='border border-slate-300 ml-2'
+            className="border border-slate-300 ml-2"
           />
         </div>
         <div>
@@ -46,7 +51,7 @@ function SignUp() {
             id="email"
             value={formState.email}
             onChange={handleInput}
-            className='border border-slate-300 ml-2'
+            className="border border-slate-300 ml-2"
           />
         </div>
         <div>
@@ -57,7 +62,7 @@ function SignUp() {
             id="password"
             value={formState.password}
             onChange={handleInput}
-            className='border border-slate-300 ml-2'
+            className="border border-slate-300 ml-2"
           />
         </div>
         <div>
@@ -68,11 +73,13 @@ function SignUp() {
             id="passwordConfirm"
             value={formState.passwordConfirm}
             onChange={handleInput}
-            className='border border-slate-300 ml-2'
+            className="border border-slate-300 ml-2"
           />
         </div>
-        <div className='flex gap-2'>
-          <button type="submit">가입</button>
+        <div className="flex gap-2">
+          <button type="submit" disabled={true}>
+            가입
+          </button>
           <button type="reset">취소</button>
         </div>
       </form>
