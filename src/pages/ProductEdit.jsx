@@ -82,10 +82,9 @@ function ProductEdit() {
   }
 
   if (data) {
-
-    console.log(formState.title)
-    console.log(formState.color)
-    console.log(formState.price)
+    console.log(formState.title);
+    console.log(formState.color);
+    console.log(formState.price);
 
     return (
       <>
@@ -122,8 +121,9 @@ function ProductEdit() {
               type="number"
               name="price"
               id={priceId}
-              defaultValue={formState.price}
-              onChange={handleDebounceChangeInput}
+              // defaultValue={formState.price}
+              value={formState.price}
+              onChange={handleChangeInput}
             />
           </div>
           <div>
