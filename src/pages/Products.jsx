@@ -4,24 +4,27 @@ import useProductList from '@/hooks/useProductList';
 import { getPbImageURL, numberWithComma } from '@/utils';
 import { Link } from 'react-router-dom';
 
-// PB → READ / CREATE / UPDATE / DELETE
-//
-// HTTP Methods
-// CREATE => POST
-// READ => GET
-// UPDATE => PUT OR PATCH
-// DELETE => DELETE
+// import { useProducts } from '@/api/useProducts';
+// import { useEffect } from 'react';
+// const { status, data: sdkData, getProductList } = useProducts();
 
-// useState
-// useEffect
-// custom hook
+// useEffect(() => {
+//   getProductList()
+//     .then(() => {
+//       console.log(status)
+//       console.log(sdkData)
+//     })
+//     .catch(() => {
+//       // console.log(status)
+//     })
+// }, []);
+
+// data null 속성 가질 수 없음
+// data { ..., items: [] } PB에서 전달된 객체
 
 function Products() {
   useDocumentTitle('제품 목록');
   const { isLoading, data } = useProductList();
-
-  // data null 속성 가질 수 없음
-  // data { ..., items: [] } PB에서 전달된 객체
 
   if (isLoading) {
     return <Spinner size={160} />;

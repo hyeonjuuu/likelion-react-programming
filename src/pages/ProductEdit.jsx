@@ -28,6 +28,10 @@ function ProductEdit() {
   const deleteProduct = useDeleteProduct();
   const updateProduct = useUpdateProduct();
 
+  // useEffect(() => {
+  //   console.log(formState);
+  // }, [formState])
+
   useEffect(() => {
     if (!isLoading && data) {
       setFormState({
@@ -78,6 +82,11 @@ function ProductEdit() {
   }
 
   if (data) {
+
+    console.log(formState.title)
+    console.log(formState.color)
+    console.log(formState.price)
+
     return (
       <>
         <h2 className="text-2xl text-center">
