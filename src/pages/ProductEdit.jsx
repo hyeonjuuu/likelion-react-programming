@@ -21,6 +21,7 @@ function ProductEdit() {
 
   const { productId } = useParams();
   const navigate = useNavigate();
+
   const { isLoading, data } = useProductItem(productId);
 
   const [formState, setFormState] = useState(initialFormState);
