@@ -21,7 +21,6 @@ const router = createBrowserRouter(
       <Route path="products" element={<Products />} />
       <Route path="product/edit/:productId" element={<ProductEdit />} />
       <Route path="contact" element={<Contact />} />
-      <Route path="learn/01" element={<PassingProps />} />
     </Route>
   )
 );
