@@ -14,6 +14,9 @@ function RootLayout({ displaySideMenu = false }) {
               <li>
                 <Link to="/learn/01">Props 전달</Link>
               </li>
+              <li>
+                <Link to="/learn/02">상태 끌어올리기</Link>
+              </li>
             </ul>
           </nav>
         )}

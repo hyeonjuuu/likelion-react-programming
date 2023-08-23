@@ -1,3 +1,4 @@
+import debounce from '@/utils/debounce';
 import { useState } from 'react';
 
 function PassingProps() {
@@ -35,7 +36,7 @@ export function Child({ color, onChangeColor }) {
       <input
         type="color"
         aria-label="글자 색상 변경"
-        onChange={(e) => onChangeColor(e.target.value)}
+        onChange={debounce((e) => onChangeColor(e.target.value), 500)}
       />
     </div>
   );
