@@ -49,12 +49,7 @@ function ProductEdit() {
     });
   };
 
-  const handleDebounceChangeInput = debounce(({ target }) => {
-    setFormState({
-      ...formState,
-      [target.name]: target.value,
-    });
-  }, 500);
+  const handleDebounceChangeInput = debounce(handleChangeInput, 500);
 
   const handleEditProduct = (e) => {
     e.preventDefault();
@@ -120,10 +115,10 @@ function ProductEdit() {
             <input
               type="number"
               name="price"
+              step={1000}
               id={priceId}
-              // defaultValue={formState.price}
-              value={formState.price}
-              onChange={handleChangeInput}
+              defaultValue={formState.price}
+              onChange={handleDebounceChangeInput}
             />
           </div>
           <div>
