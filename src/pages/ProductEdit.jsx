@@ -11,7 +11,7 @@ import debounce from '@/utils/debounce';
 const initialFormState = {
   title: '',
   color: '',
-  price: 0,
+  price: '',
 };
 
 function ProductEdit() {

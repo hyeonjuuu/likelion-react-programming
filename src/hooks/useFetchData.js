@@ -4,10 +4,6 @@ const defaultOptions = {
   method: 'GET',
 };
 
-const defaultOptions = {
-  method: 'GET',
-};
-
 function useFetchData(endpoint, options = {}) {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
