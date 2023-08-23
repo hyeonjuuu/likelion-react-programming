@@ -67,7 +67,7 @@ export function Child({ color, onChangeColor }) {
 
 export function GrandChild({ color, onChangeColor }) {
   return (
-    <div 
+    <div
       className="GrandChild p-4 rounded-md flex flex-col justify-center items-center "
       style={{
         backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 80%)`,
