@@ -26,15 +26,13 @@ function SignIn() {
     navigate('/');
   };
 
-  const handleInput = (e) => {
+  const handleInput = debounce((e) => {
     const { name, value } = e.target;
     setFormState({
       ...formState,
       [name]: value,
     });
-  };
-
-  const handleDebounceInput = debounce(handleInput, 500);
+  }, 400);
 
   return (
     <div>
@@ -51,7 +49,7 @@ function SignIn() {
             name="email"
             id="email"
             defaultValue={formState.email}
-            onChange={handleDebounceInput}
+            onChange={handleInput}
             className="border border-slate-300 ml-2"
           />
         </div>
@@ -62,7 +60,7 @@ function SignIn() {
             name="password"
             id="password"
             defaultValue={formState.password}
-            onChange={handleDebounceInput}
+            onChange={handleInput}
             className="border border-slate-300 ml-2"
           />
         </div>
