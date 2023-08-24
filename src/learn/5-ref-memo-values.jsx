@@ -13,12 +13,10 @@ function RefExampleMemoValues() {
 
   // 값 참조 (렌더링 될 때 마다 값을 초기화하지 않고 기억하기 위해서)
   // 렌더링에 전혀~ 영향을 미치지 않음
-  // #useRef를 사용하여 값 기억하기
   const stepRef = useRef(900); // Refs (참조 객체) 생성 → { current: 900 }
   console.log('stepRef\n', stepRef);
 
   // 지역 변수
-  // #지역변수로 클릭 이벤트 핸들러에서 값을 변경해도 컴포넌트 리렌더링X
   let num = 100;
 
   console.log(
