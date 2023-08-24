@@ -5,9 +5,11 @@ function RefExampleReferencingDOM() {
   return (
     <>
       <h2 className="mb-10">컴포넌트 내부의 DOM 요소를 직접 참조하는 Refs</h2>
-      <Circle />
-      <Circle />
-      <Circle />
+      <div className="flex gap-10">
+        <Circle />
+        <Circle />
+        <Circle />
+      </div>
     </>
   );
 }
@@ -29,48 +31,30 @@ function RefExampleReferencingDOM() {
 // 3. useLayoutEffect 훅 안에서 Refs 현재(current) 값으로 명령형 프로그래밍
 
 function Circle() {
-  // DOM 요소를 참조하기 위한 Refs 생성
-  const circleRef = useRef(null); // { current: null }
+  const componentRef = useRef(null);
+  const imageRef = useRef(null);
 
-  // 이펙트 영역
   useLayoutEffect(() => {
-    console.log(circleRef.current);
+    const ctx = gsap.context(() => {
+      // 1. CSS 선택자 사용하기 (GSAP 사용자 방식)
+      // gsap.to('img', { })
+      // 2. Refs 사용하기 (React 방식)
+      // gsap.to(imageRef.current, {  });
+    }, componentRef);
 
-    // const circleElement = document.getElementById('circle');
-
-    // gsap.set(circleElement, { scale: 0.5 });
-
-    // const handleScale = (e) => {
-    //   gsap.to(e.currentTarget, { scale: 2 });
-    // }
-
-    // circleElement.addEventListener('click', handleScale);
-
-    // return () => {
-    //   circleElement.removeEventListener('click', handleScale);
-    // };
+    return () => {
+      ctx.revert();
+    };
   }, []);
-
-  // 이벤트 핸들러
-  // const handleEnter = ({ currentTarget }) => {
-  //   gsap.to(currentTarget, { opacity: 0.5, scale: 4 });
-  // }
-
-  // const handleLeave = ({ currentTarget }) => {
-  //   gsap.to(currentTarget, { opacity: 1, scale: 1 });
-  // }
 
   return (
     <figure
       role="none"
-      ref={circleRef}
-      // ref={(domElement) => {
-      //   circleRef.current = domElement
-      // }}
-      // onPointerEnter={handleEnter}
-      // onPointerLeave={handleLeave}
-      className="w-16 h-16 rounded-full bg-yellow-400"
-    />
+      ref={componentRef}
+      className="grid place-content-center w-16 h-16 rounded-full bg-yellow-400"
+    >
+      <img ref={imageRef} src="/vite.svg" alt="Vite" />
+    </figure>
   );
 }
 
