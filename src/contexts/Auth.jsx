@@ -9,7 +9,7 @@
 
 /* -------------------------------------------------------------------------- */
 
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState, useContext } from 'react';
 import pb from '@/api/pocketbase';
 import { useContext } from 'react';
 
@@ -30,7 +30,6 @@ function AuthProvider({ displayName = 'AuthProvider', children }) {
 
   useEffect(() => {
     const unsub = pb.authStore.onChange((token, model) => {
-      console.log({ token, model });
       setAuthState((state) => ({
         ...state,
         isAuth: !!model,
@@ -58,7 +57,7 @@ function AuthProvider({ displayName = 'AuthProvider', children }) {
   };
 
   const signOut = async () => {
-    return await pb.collection('users').clear();
+    return await pb.authStore.clear();
   };
 
   const secession = async (recordId) => {
@@ -83,7 +82,7 @@ function AuthProvider({ displayName = 'AuthProvider', children }) {
 export default AuthProvider;
 
 // 커스텀 훅
-// 인증 정보를 앱 어디서나 손 쉽게 주입 받아 쓸 수 있도록 하는 함수
+// 인증 정보를 앱 어디서나 손쉽게 주입 받아 쓸 수 있도록 하는 함수
 export const useAuth = () => {
   const authValue = useContext(AuthContext);
   if (!authValue) {
