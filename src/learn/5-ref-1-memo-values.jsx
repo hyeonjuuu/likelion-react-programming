@@ -45,7 +45,7 @@ function RefExampleMemoValues() {
       >
         지역 변수 수정
       </button>
-      {/ 참조(Refs) 뮤테이션 /}
+      {/* 참조(Refs) 뮤테이션 */}
       <button
         type="button"
         onClick={() => {
@@ -55,8 +55,7 @@ function RefExampleMemoValues() {
       >
         참조 변경
       </button>
-
-      {/* 상태 업데이트  */}
+      {/* 상태 업데이트 */}
       <button
         type="button"
         onClick={() => {
@@ -67,6 +66,9 @@ function RefExampleMemoValues() {
       </button>
 
       <div>
+        <h3>참조 현재 값: stepRef.current</h3>
+        <output>{stepRef.current}</output>
+        <h3>지역 변수: num</h3>
         <output>{num}</output>
       </div>
     </>
