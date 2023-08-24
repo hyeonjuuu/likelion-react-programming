@@ -23,13 +23,15 @@ function Home() {
       <h2 className="text-white tracking-widest font-extralight text-4xl uppercase">
         Shop<span className="text-[60px] text-yellow-400">.</span>
       </h2>
-      <button
-        type="button"
-        onClick={handleSignOut}
-        className="text-white text-4xl p-4"
-      >
-        Sign Out
-      </button>
+      {pb.authStore.isValid && (
+        <button
+          type="button"
+          onClick={handleSignOut}
+          className="text-white text-4xl p-4"
+        >
+          Sign Out
+        </button>
+      )}
     </div>
   );
 }
