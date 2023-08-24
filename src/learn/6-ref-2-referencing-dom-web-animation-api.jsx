@@ -1,3 +1,4 @@
+import { gsap } from 'gsap';
 import { useLayoutEffect } from 'react';
 
 function RefExampleReferencingDOM() {
@@ -10,59 +11,38 @@ function RefExampleReferencingDOM() {
 }
 
 function Circle() {
-  // useEffect 콜백 보다 먼저 실행
-  // 리액트 렌더링 프로세스
-  // 1. 렌더 트리거
-  // 2. 컴포넌트 렌더링
-  // 3. DOM 커밋
-  // - useLayoutEffect() 콜백 (GSAP 문서 참고)
-  // 브라우저 렌더링 프로세스
-  // 4. 브라우저 페인팅
-  // - useEffect() 콜백
-
+  // 이펙트 영역
   useLayoutEffect(() => {
-    // Web Animation API
-    // 참고:
-    //   https://developer.mozilla.org/en-US/docs/Web/API/Element/animate
-    //   https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/KeyframeEffect#parameters
-    //   https://easings.co
-
-    // figure 요소가 단 하나만 존재할 것이다. (보장 못함)
-    // .circle 단 하나만 존재할 것이다. (보장 못함)
-    // #circle은 단 하나만 존재할 것이다. (보장?!)
     const circleElement = document.getElementById('circle');
-    const handleMoveX = (e) => {
-      e.currentTarget.animate(
-        /* keyframes: keyframe[]*/
-        [
-          /* keyframe {} */
-          { transform: 'translateX(0)' }, // from | initial
-          { transform: 'translateX(360px)' }, // to | animate
-        ],
-        /* options */
-        {
-          duration: 2000,
-          iterations: Infinity,
-          direction: 'alternate',
-          easing: 'cubic-bezier(0.72,-0.28,0.16,1.23)',
-          fill: 'forwards',
-        }
-      );
+
+    gsap.set(circleElement, { scale: 0.5 });
+
+    const handleScale = (e) => {
+      gsap.to(e.currentTarget, { scale: 2 });
     };
 
-    // 이벤트 연결
-    circleElement.addEventListener('click', handleMoveX);
+    circleElement.addEventListener('click', handleScale);
 
-    // 연결된 이벤트 정리
     return () => {
-      circleElement.removeEventListener('click', handleMoveX);
+      circleElement.removeEventListener('click', handleScale);
     };
   }, []);
+
+  // 이벤트 핸들러
+  const handleEnter = ({ currentTarget }) => {
+    gsap.to(currentTarget, { opacity: 0.5, scale: 4 });
+  };
+
+  const handleLeave = ({ currentTarget }) => {
+    gsap.to(currentTarget, { opacity: 1, scale: 1 });
+  };
 
   return (
     <figure
       role="none"
       id="circle"
+      onPointerEnter={handleEnter}
+      onPointerLeave={handleLeave}
       className="w-16 h-16 rounded-full bg-yellow-400"
     />
   );
