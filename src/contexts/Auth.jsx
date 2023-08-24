@@ -9,8 +9,8 @@
 
 /* -------------------------------------------------------------------------- */
 
-import { useState } from 'react';
-import { createContext } from 'react';
+import { createContext, useEffect, useState } from 'react';
+import pb from '@/api/pocketbase';
 
 // Context 생성
 const AuthContext = createContext();
@@ -26,17 +26,45 @@ function AuthProvider({ displayName = 'AuthProvider', children }) {
   // 인증 상태 관리
   const [authState, setAuthState] = useState(initialAuthState);
 
+  useEffect(() => {
+    const unsub = pb.authStore.onChange((token, model) => {
+      console.log({ token, model });
+      setAuthState((state) => ({
+        ...state,
+        isAuth: !!model,
+        user: model,
+        token,
+      }));
+    });
+
+    return () => {
+      unsub?.();
+    };
+  }, []);
+
   // 메서드를 만들어 공급.
   // 메서드 : 할 수 있는 기능
   // 회원가입, 로그인, 로그아웃, 가입탈퇴
-  const signUp = async () => {
-    return await pb.collection('users').create;
+  const signUp = async (registerUser) => {
+    return await pb.collection('users').create(registerUser);
   };
-  const signIn = async () => {};
-  const signOut = async () => {};
-  const secession = async () => {};
+
+  const signIn = async (usernameOrEmail, password) => {
+    return await pb
+      .collection('users')
+      .authWithPassword(usernameOrEmail, password);
+  };
+
+  const signOut = async () => {
+    return await pb.collection('users').clear();
+  };
+
+  const secession = async (recordId) => {
+    return await pb.collection('users').delete(recordId);
+  };
+
   const authValue = {
-    authInfo: authState,
+    ...authState,
     signUp,
     signIn,
     signOut,
