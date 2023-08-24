@@ -11,6 +11,7 @@
 
 import { createContext, useEffect, useState } from 'react';
 import pb from '@/api/pocketbase';
+import { useContext } from 'react';
 
 // Context 생성
 const AuthContext = createContext();
@@ -80,3 +81,14 @@ function AuthProvider({ displayName = 'AuthProvider', children }) {
 }
 
 export default AuthProvider;
+
+// 커스텀 훅
+// 인증 정보를 앱 어디서나 손 쉽게 주입 받아 쓸 수 있도록 하는 함수
+export const useAuth = () => {
+  const authValue = useContext(AuthContext);
+  if (!authValue) {
+    throw new Error('useAuth 훅은 AuthProvider 내부에서만 사용할 수 있습니다.');
+  }
+
+  return authValue;
+};
