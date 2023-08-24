@@ -10,6 +10,7 @@
 /* -------------------------------------------------------------------------- */
 
 import { createContext, useEffect, useState, useContext } from 'react';
+import { string, node } from 'prop-types';
 import pb from '@/api/pocketbase';
 import { string, node } from 'prop-types';
 
@@ -83,6 +84,12 @@ AuthProvider.propTypes = {
   displayName: string,
   children: node.isRequired, // React.ReactNode
 };
+
+AuthProvider.propTypes = {
+  displayName: string,
+  children: node.isRequired, // React.ReactNode
+};
+
 export default AuthProvider;
 
 // 커스텀 훅

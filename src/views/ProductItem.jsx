@@ -1,4 +1,6 @@
+import { ProductType } from '@/@types/global.d';
 import { getPbImageURL, numberWithComma } from '@/utils';
+import { shape, string, number } from 'prop-types';
 
 export default function ProductItem({ item }) {
   return (
@@ -19,3 +21,9 @@ export default function ProductItem({ item }) {
     </li>
   );
 }
+
+ProductItem.propTypes = {
+  item: ProductType.isRequired
+}
+
+

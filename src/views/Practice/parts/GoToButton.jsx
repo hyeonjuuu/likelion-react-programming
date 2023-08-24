@@ -1,3 +1,5 @@
+import { oneOf } from 'prop-types';
+
 function GoToButton({
   direction /* 'down' | 'up' */,
   label /* string */,
@@ -42,5 +44,9 @@ function GoToButton({
     </button>
   );
 }
+
+GoToButton.propTypes = {
+  direction: oneOf(['down', 'up']),
+};
 
 export default GoToButton;
