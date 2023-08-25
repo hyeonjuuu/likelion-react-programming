@@ -24,7 +24,11 @@ dependencies:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
   react-helmet-async:
+<<<<<<< HEAD
     specifier: ^1.3.0
+=======
+    specifier: 1.3.0
+>>>>>>> 0ced223a6103ccdb2586e8aaca9cd6b870f8818f
     version: 1.3.0(react-dom@18.2.0)(react@18.2.0)
   react-hot-toast:
     specifier: 2.4.1
