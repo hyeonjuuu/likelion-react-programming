@@ -22,7 +22,7 @@ import ProductEdit from './pages/ProductEdit';
 import Products from './pages/Products';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import ComponentPropTypes from './learn/9-component-prop-types';
+import LocalStorage from './learn/10-local-storage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -53,6 +53,7 @@ const router = createBrowserRouter(
       <Route path="learn/07/02" element={<GSAP_Context />} />
       <Route path="learn/08" element={<FramerMotion_Animation />} />
       <Route path="learn/09" element={<ComponentPropTypes />} />
+      <Route path="learn/10" element={<LocalStorage />} />
     </Route>
   )
 );
