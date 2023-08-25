@@ -15,6 +15,7 @@ import RefExampleReferencingDOM from './learn/6-ref-referencing-dom';
 import GSAP_Animation from './learn/7-1-ref-gsap-animation';
 import GSAP_Context from './learn/7-2-ref-gsap-context';
 import FramerMotion_Animation from './learn/8-framer-motion';
+import ComponentPropTypes from './learn/9-component-prop-types';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
 import ProductEdit from './pages/ProductEdit';

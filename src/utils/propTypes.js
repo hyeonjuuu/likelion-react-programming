@@ -10,6 +10,7 @@ export function string(props, propName, componentName) {
   }
 }
 
+// Namespace Object
 const PropTypes = {
   string,
 };
