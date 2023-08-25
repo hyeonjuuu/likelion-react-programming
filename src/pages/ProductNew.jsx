@@ -1,5 +1,7 @@
-import { useRef } from 'react';
+import pb from '@/api/pocketbase';
+import { cloneElement, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { toast } from 'react-hot-toast';
 
 function ProductNew() {
   const titleRef = useRef(null);
@@ -10,10 +12,31 @@ function ProductNew() {
 
   const handleRegisterProduct = async (e) => {
     e.preventDefault();
-    console.log(titleRef.current.value);
-    console.log(colorRef.current.value);
-    console.log(priceRef.current.value);
-    console.log(photoRef.current.value);
+
+    const formData = new FormData();
+    formData.append('title', titleRef.current.value);
+    formData.append('color', colorRef.current.value);
+    formData.append('price', Number(priceRef.current.value));
+    formData.append('photo', photoRef.current.files[0]);
+
+    try {
+      await pb.collection('products').create(formData);
+      toast.success('상품 등록에 성공했습니다!', {
+        position: 'top-center',
+        ariaProps: {
+          role: 'status',
+          'aria-live': 'polite',
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDisplayUploadPhoto = (e) => {
+    const photoFile = e.target.files[0];
+    const photoUrl = URL.createObjectURL(photoFile);
+    uploadPhotoRef.current.setAttribute('src', photoUrl);
   };
 
   return (
@@ -58,11 +81,7 @@ function ProductNew() {
             <label htmlFor="photo">사진</label>
             <input
               ref={photoRef}
-              onChange={(e) => {
-                const photoFile = e.target.files[0];
-                const photoUrl = URL.createObjectURL(photoFile);
-                uploadPhotoRef.current.setAttribute('src', photoUrl);
-              }}
+              onChange={handleDisplayUploadPhoto}
               className="cursor-pointer absolute w-full h-full opacity-0"
               type="file"
               name="photo"
