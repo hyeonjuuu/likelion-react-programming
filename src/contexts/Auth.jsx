@@ -10,9 +10,9 @@
 /* -------------------------------------------------------------------------- */
 
 import { createContext, useEffect, useState, useContext } from 'react';
-import { string, node } from 'prop-types';
+// import { string, node } from 'prop-types';
 import pb from '@/api/pocketbase';
-import { string, node } from 'prop-types';
+// import { string, node } from 'prop-types';
 
 // Context 생성
 const AuthContext = createContext();
@@ -80,15 +80,15 @@ function AuthProvider({ displayName = 'AuthProvider', children }) {
   );
 }
 
-AuthProvider.propTypes = {
-  displayName: string,
-  children: node.isRequired, // React.ReactNode
-};
+// AuthProvider.propTypes = {
+//   displayName: string,
+//   children: node.isRequired, // React.ReactNode
+// };
 
-AuthProvider.propTypes = {
-  displayName: string,
-  children: node.isRequired, // React.ReactNode
-};
+// AuthProvider.propTypes = {
+//   displayName: string,
+//   children: node.isRequired, // React.ReactNode
+// };
 
 export default AuthProvider;
 

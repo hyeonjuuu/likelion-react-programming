@@ -21,19 +21,23 @@ import ProductEdit from './pages/ProductEdit';
 import Products from './pages/Products';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import ComponentPropTypes from './learn/9-component-prop-types';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout displaySideMenu={false} />}>
+    <Route path="/" element={<RootLayout displaySideMenu={true} />}>
       <Route index element={<Home />} />
       <Route path="signin" element={<SignIn />} />
       <Route path="signup" element={<SignUp />} />
       <Route path="products" element={<Products />} />
-      <Route path="product/edit/:productId" element={
-        <ProtectRoute>
-          <ProductEdit />
-        </ProtectRoute>
-      } />
+      <Route
+        path="product/edit/:productId"
+        element={
+          <ProtectRoute>
+            <ProductEdit />
+          </ProtectRoute>
+        }
+      />
       <Route path="contact" element={<Contact />} />
 
       {/* 학습 주제 */}
@@ -47,6 +51,7 @@ const router = createBrowserRouter(
       <Route path="learn/07/01" element={<GSAP_Animation />} />
       <Route path="learn/07/02" element={<GSAP_Context />} />
       <Route path="learn/08" element={<FramerMotion_Animation />} />
+      <Route path="learn/09" element={<ComponentPropTypes />} />
     </Route>
   )
 );
