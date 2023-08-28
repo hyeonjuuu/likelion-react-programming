@@ -1,13 +1,27 @@
-// ^ store을 전달받아 Hook을 생성
-// store (define state & action) -> hook (bind componenet)
 import { create } from 'zustand';
 
-// import { createWithEqualityFn } from "zustand/traditional";
+export const useListStore = create((set) => ({
+  // Query
+  list: [
+    {
+      id: crypto.randomUUID(),
+      title: 'Zustand는 츄~스탄트로 발음합니다.',
+    },
+  ],
 
-// ^setState와 같은 상태
-const listStore = (set) => {
-  // return state
-  return {};
-};
-
-create(listStore);
+  // Mutation
+  addItem: (newItemTitle) =>
+    set((state) => ({
+      list: [
+        ...state.list,
+        {
+          id: crypto.randomUUID(),
+          title: newItemTitle,
+        },
+      ],
+    })),
+  deleteItem: (deleteId) =>
+    set((state) => ({
+      list: state.list.filter((item) => item.id !== deleteId),
+    })),
+}));
