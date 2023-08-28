@@ -3,8 +3,10 @@ import { node } from 'prop-types';
 import { useLocation } from 'react-router-dom';
 
 function AnimateTransition({ children }) {
+  // 장면 전환
   const location = useLocation();
   return (
+    // 이 값으로 애니메이션을 제어할 수 있다.
     <AnimatePresence mode="wait">
       <motion.div
         key={location.pathname}

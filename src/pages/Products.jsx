@@ -7,6 +7,7 @@ import { number, shape, string } from 'prop-types';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
+// 목록
 const list = {
   hidden: { opacity: 0 },
   visible: {
