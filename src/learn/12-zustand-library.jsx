@@ -4,8 +4,12 @@ import { string } from 'prop-types';
 import { useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Logo from './partials/Logo';
+import { useCatsStore } from '@/store/cats';
 
 function ZustandLibrary() {
+  // 고양이들 데려오기
+  const catsStoreData = useCatsStore();
+  console.log(catsStoreData);
   return (
     <>
       <Helmet>
