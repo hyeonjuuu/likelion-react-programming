@@ -8,10 +8,6 @@ import { RouterProvider } from 'react-router-dom';
 import router from './routes';
 import { Suspense } from 'react';
 import Spinner from './components/Spinner';
-import { QueryClient } from "@tanstack/react-query";
-
-const queryClient = new QueryClient()
-console.log(queryClient);
 
 // 쿼리 클라이언트 객체 생성
 const queryClient = new QueryClient({
