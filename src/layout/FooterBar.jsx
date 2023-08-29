@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
+
+// React.memo(Component, compareFunction(props))
+// Component === function
+
+// 고차 컴포넌트 감싸기 (래핑)
 function FooterBar() {
   // 현재(오늘) 년도를 화면에 출력하는 상태를 설정
   const [currentYear] = useState(() => new Date().getFullYear());
