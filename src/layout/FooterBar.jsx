@@ -1,10 +1,5 @@
 import { useState, memo } from 'react';
 import { motion } from 'framer-motion';
-import FooterBar from './FooterBar';
-
-
-// React.memo(Component, compareFunction(props))
-// Component === function
 
 // React.memo(Component)
 // Component === function
