@@ -11,13 +11,8 @@
     "pocketbase": "pocketbase/pocketbase serve"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "@tanstack/react-query": "^4.33.0",
-    "@tanstack/react-query-devtools": "^4.33.0",
-=======
     "@tanstack/react-query": "4.33.0",
     "@tanstack/react-query-devtools": "4.33.0",
->>>>>>> 03964d76b4e5de5da773175a50b47558db3f41f4
     "framer-motion": "10.16.0",
     "gsap": "3.12.2",
     "immer": "10.0.2",
@@ -32,7 +27,6 @@
     "zustand": "4.4.1"
   },
   "devDependencies": {
-    "@tanstack/eslint-plugin-query": "^4.34.1",
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
     "@vitejs/plugin-react": "4.0.3",

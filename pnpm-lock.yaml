@@ -6,17 +6,10 @@ settings:
 
 dependencies:
   '@tanstack/react-query':
-<<<<<<< HEAD
-    specifier: ^4.33.0
-    version: 4.33.0(react-dom@18.2.0)(react@18.2.0)
-  '@tanstack/react-query-devtools':
-    specifier: ^4.33.0
-=======
     specifier: 4.33.0
     version: 4.33.0(react-dom@18.2.0)(react@18.2.0)
   '@tanstack/react-query-devtools':
     specifier: 4.33.0
->>>>>>> 03964d76b4e5de5da773175a50b47558db3f41f4
     version: 4.33.0(@tanstack/react-query@4.33.0)(react-dom@18.2.0)(react@18.2.0)
   framer-motion:
     specifier: 10.16.0
@@ -56,9 +49,6 @@ dependencies:
     version: 4.4.1(@types/react@18.2.15)(immer@10.0.2)(react@18.2.0)
 
 devDependencies:
-  '@tanstack/eslint-plugin-query':
-    specifier: ^4.34.1
-    version: 4.34.1(eslint@8.45.0)
   '@types/react':
     specifier: 18.2.15
     version: 18.2.15
@@ -667,17 +657,6 @@ packages:
     engines: {node: '>=14.0.0'}
     dev: false
 
-<<<<<<< HEAD
-  /@tanstack/eslint-plugin-query@4.34.1(eslint@8.45.0):
-    resolution: {integrity: sha512-RflOwyXamuHhuMX5RL6wtKiVw9Hi5Hhiv9gW2/ICVc4omflB+GflrxwvQ+EWRKrSRv3C0YcR0UzRxuiZ4mLq7Q==}
-    peerDependencies:
-      eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
-    dependencies:
-      eslint: 8.45.0
-    dev: true
-
-=======
->>>>>>> 03964d76b4e5de5da773175a50b47558db3f41f4
   /@tanstack/match-sorter-utils@8.8.4:
     resolution: {integrity: sha512-rKH8LjZiszWEvmi01NR72QWZ8m4xmXre0OOwlRGnjU01Eqz/QnN+cqpty2PJ0efHblq09+KilvyR7lsbzmXVEw==}
     engines: {node: '>=12'}
