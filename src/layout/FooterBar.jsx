@@ -1,11 +1,16 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import FooterBar from './FooterBar';
 
 
 // React.memo(Component, compareFunction(props))
 // Component === function
 
 // 고차 컴포넌트 감싸기 (래핑)
+const FooterBar = memeo(function FooterBar() {
+  // 현재(오늘) 년도를 화면에 출력하는 상태 설정
+  const [currentYear] = useState(()=> new Date().getFullYear())
+})
 function FooterBar() {
   // 현재(오늘) 년도를 화면에 출력하는 상태를 설정
   const [currentYear] = useState(() => new Date().getFullYear());
