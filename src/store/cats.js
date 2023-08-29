@@ -17,7 +17,21 @@ return {
   // ^매개변수 3개
 // addCat({name, age, gender})=>{}
 // ^매개변수 1개
-addCat(catInfo)=>{}
+addCat(catInfo)=>{
+  // React의 방식 (객체 업데이트, 전개 구문)
+  return set((state)=>{
+    // 다음 상태 반환
+    // ...이전 고양이들
+    console.log(state.cats);
+    // 새로운 고양이
+    const newCat
+    return {
+
+           // 이전 고양이들 // 새로운 고양이
+      cats:[...state.cats, newCat]
+    }
+  })
+}
   // 고양이(반려묘) 제거
 }
 }
