@@ -27,7 +27,7 @@ function TanStackQueryLibrary() {
 
     fetchProductsData();
   }, []);
-
+// derived state : 파생상태
   const isError = !!error;
 
   if (isLoading) {
